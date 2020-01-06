@@ -8,7 +8,7 @@
 		<version>0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>jxen-tables-csv</artifactId>
-	<name>Electronic Tables Support. Open CSV</name>
+	<name>Electronic Tables. Open CSV</name>
 	<description>Electronic Tables Support for CSV files</description>
 	<dependencies>
 		<dependency>

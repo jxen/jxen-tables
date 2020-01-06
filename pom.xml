@@ -13,16 +13,17 @@
 	<name>Electronic Tables Support</name>
 	<description>Electronic Tables Support</description>
 	<properties>
-		<jar-plugin.version>3.2.0</jar-plugin.version>
-
 		<tables.version>${project.version}</tables.version>
-		<poi.version>4.1.1</poi.version>
+		<jar-plugin.version>3.2.0</jar-plugin.version>
 		<opencsv.version>5.0</opencsv.version>
+		<poi.version>4.1.1</poi.version>
+		<snakeyaml.version>1.25</snakeyaml.version>
 	</properties>
 	<modules>
 		<module>jxen-tables-api</module>
 		<module>jxen-tables-csv</module>
 		<module>jxen-tables-poi</module>
+		<module>jxen-tables-yaml</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
@@ -38,6 +39,16 @@
 				<type>test-jar</type>
 			</dependency>
 			<dependency>
+				<groupId>com.github.jxen.sdk</groupId>
+				<artifactId>jxen-tables-yaml</artifactId>
+				<version>${tables.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.opencsv</groupId>
+				<artifactId>opencsv</artifactId>
+				<version>${opencsv.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>org.apache.poi</groupId>
 				<artifactId>poi</artifactId>
 				<version>${poi.version}</version>
@@ -48,9 +59,9 @@
 				<version>${poi.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>com.opencsv</groupId>
-				<artifactId>opencsv</artifactId>
-				<version>${opencsv.version}</version>
+				<groupId>org.yaml</groupId>
+				<artifactId>snakeyaml</artifactId>
+				<version>${snakeyaml.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

@@ -7,32 +7,22 @@
 		<artifactId>jxen-tables</artifactId>
 		<version>0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>jxen-tables-poi</artifactId>
-	<name>Electronic Tables. Apache POI</name>
-	<description>Electronic Tables Support. Implementation with Apache POI</description>
+	<artifactId>jxen-tables-yaml</artifactId>
+	<name>Electronic Tables YAML Support</name>
+	<description>Electronic Tables YAML files Support</description>
 	<dependencies>
 		<dependency>
 			<groupId>com.github.jxen.sdk</groupId>
 			<artifactId>jxen-tables-api</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
+			<groupId>org.yaml</groupId>
+			<artifactId>snakeyaml</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.github.jxen.sdk</groupId>
 			<artifactId>jxen-tables-api</artifactId>
 			<type>test-jar</type>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-params</artifactId>
-			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

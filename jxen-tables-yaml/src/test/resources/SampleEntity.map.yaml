@@ -1,0 +1,7 @@
+class: com.github.jxen.tables.test.SampleEntity
+skipRows: 1
+columns:
+- {index: 0, field: text, name=: text}
+- {index: 1, field: number, name=: number, default: 1}
+- {index: 2, field: value, default: 1.0}
+- {index: 4, field: date}
