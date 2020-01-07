@@ -16,6 +16,7 @@ import java.util.ServiceLoader;
 public final class TableFactory {
 
 	private static final Map<String, TableReader> READER_CACHE = new HashMap<>();
+	private static final Map<String, TableWriter> WRITER_CACHE = new HashMap<>();
 
 	private TableFactory() {
 	}
@@ -35,6 +36,24 @@ public final class TableFactory {
 				return reader;
 			}
 		}
-		throw new TableException("File type is not supported: " + ext);
+		throw new TableException("Reading of file type is not supported: " + ext);
+	}
+
+	/**
+	 * @param ext file extension
+	 * @return {@link TableWriter} implementation
+	 */
+	public static TableWriter getWriter(String ext) {
+		if (WRITER_CACHE.containsKey(ext)) {
+			return WRITER_CACHE.get(ext);
+		}
+		for (ServiceProvider serviceProvider : ServiceLoader.load(ServiceProvider.class)) {
+			TableWriter writer = serviceProvider.getWriter(ext);
+			if (Objects.nonNull(writer)) {
+				WRITER_CACHE.put(ext, writer);
+				return writer;
+			}
+		}
+		throw new TableException("Writing of file type is not supported: " + ext);
 	}
 }

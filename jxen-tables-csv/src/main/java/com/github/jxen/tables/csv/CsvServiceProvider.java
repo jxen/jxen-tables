@@ -1,6 +1,7 @@
 package com.github.jxen.tables.csv;
 
 import com.github.jxen.tables.api.TableReader;
+import com.github.jxen.tables.api.TableWriter;
 import com.github.jxen.tables.spi.ServiceProvider;
 
 /**
@@ -12,10 +13,20 @@ import com.github.jxen.tables.spi.ServiceProvider;
  */
 public class CsvServiceProvider implements ServiceProvider {
 
+	private static final String CSV = "csv";
+
 	@Override
 	public TableReader getReader(String ext) {
-		if ("csv".equalsIgnoreCase(ext)) {
+		if (CSV.equalsIgnoreCase(ext)) {
 			return new CsvTableReader();
+		}
+		return null;
+	}
+
+	@Override
+	public TableWriter getWriter(String ext) {
+		if (CSV.equalsIgnoreCase(ext)) {
+			return new CsvTableWriter();
 		}
 		return null;
 	}

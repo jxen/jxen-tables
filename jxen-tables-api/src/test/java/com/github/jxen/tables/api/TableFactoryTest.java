@@ -8,13 +8,24 @@ import org.junit.jupiter.api.Test;
 class TableFactoryTest {
 
 	@Test
-	void testFailure() {
+	void testReaderFailure() {
 		assertThrows(TableException.class, () -> TableFactory.getReader("unsupported"));
 	}
 
 	@Test
-	void testSuccess() {
+	void testReaderSuccess() {
 		TableFactory.getReader("test");
 		assertNotNull(TableFactory.getReader("test"));
+	}
+
+	@Test
+	void testWriterFailure() {
+		assertThrows(TableException.class, () -> TableFactory.getWriter("unsupported"));
+	}
+
+	@Test
+	void testWriterSuccess() {
+		TableFactory.getWriter("test");
+		assertNotNull(TableFactory.getWriter("test"));
 	}
 }

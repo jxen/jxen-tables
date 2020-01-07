@@ -9,7 +9,7 @@ import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Sheet;
 
 /**
- * {@code XlsTableReader} class provides data read from old Excel 2003 file.
+ * {@code XlsTableReader} class provides data read feature from old Excel 2003 file.
  *
  * @author Denis Murashev
  *

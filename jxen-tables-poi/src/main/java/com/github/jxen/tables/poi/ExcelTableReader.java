@@ -10,7 +10,7 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 
 /**
- * {@code ExcelTableReader} class provides data read from Excel file.
+ * {@code ExcelTableReader} class provides data read feature from Excel file.
  *
  * @author Denis Murashev
  *

@@ -1,6 +1,7 @@
 package com.github.jxen.tables.poi;
 
 import com.github.jxen.tables.api.TableReader;
+import com.github.jxen.tables.api.TableWriter;
 import com.github.jxen.tables.spi.ServiceProvider;
 
 /**
@@ -12,13 +13,27 @@ import com.github.jxen.tables.spi.ServiceProvider;
  */
 public class PoiServiceProvider implements ServiceProvider {
 
+	private static final String XLS = "xls";
+	private static final String XLSX = "xlsx";
+
 	@Override
 	public TableReader getReader(String ext) {
-		if ("xls".equalsIgnoreCase(ext)) {
+		if (XLS.equalsIgnoreCase(ext)) {
 			return new XlsTableReader();
 		}
-		if ("xlsx".equalsIgnoreCase(ext)) {
+		if (XLSX.equalsIgnoreCase(ext)) {
 			return new XlsxTableReader();
+		}
+		return null;
+	}
+
+	@Override
+	public TableWriter getWriter(String ext) {
+		if (XLS.equalsIgnoreCase(ext)) {
+			return new XlsTableWriter();
+		}
+		if (XLSX.equalsIgnoreCase(ext)) {
+			return new XlsxTableWriter();
 		}
 		return null;
 	}

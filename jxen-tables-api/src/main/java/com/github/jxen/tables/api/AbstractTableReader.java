@@ -2,6 +2,7 @@ package com.github.jxen.tables.api;
 
 import java.io.InputStream;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +36,9 @@ public abstract class AbstractTableReader implements TableReader {
 		addConverter(Number.class, float.class, v -> ((Number) v).floatValue());
 		addConverter(String.class, double.class, v -> Double.parseDouble((String) v));
 		addConverter(Number.class, double.class, v -> ((Number) v).doubleValue());
+		addConverter(String.class, boolean.class, v -> Boolean.parseBoolean((String) v));
 		addConverter(String.class, LocalDate.class, v -> LocalDate.parse((String) v));
+		addConverter(String.class, LocalDateTime.class, v -> LocalDateTime.parse((String) v));
 	}
 
 	@Override

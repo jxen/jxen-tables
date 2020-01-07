@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
@@ -30,7 +31,9 @@ class ExcelTableReaderTest {
 		TableConfig<SampleEntity, SampleEntity> config = new TableConfig<>(Mapping.fromClass(SampleEntity.class));
 		InputStream resource = ExcelTableReaderTest.class.getResourceAsStream("/test.xls");
 		TableModel<SampleEntity, SampleEntity> model = new XlsTableReader().read(config, resource);
-		assertEquals(new SampleEntity("12.0", 3, 3, LocalDate.parse("2020-01-01")), model.getData().get(2));
+		SampleEntity expected = new SampleEntity("12.0", 3, 3, LocalDate.parse("2020-01-01"), false,
+				LocalDateTime.parse("2020-01-01T00:00"));
+		assertEquals(expected, model.getData().get(2));
 	}
 
 	@Test
@@ -38,7 +41,9 @@ class ExcelTableReaderTest {
 		TableConfig<SampleEntity, SampleEntity> config = new TableConfig<>(Mapping.fromClass(SampleEntity.class));
 		InputStream resource = ExcelTableReaderTest.class.getResourceAsStream("/test.xlsx");
 		TableModel<SampleEntity, SampleEntity> model = new XlsxTableReader().read(config, resource);
-		assertEquals(new SampleEntity("12.0", 3, 3, LocalDate.parse("2020-01-01")), model.getData().get(2));
+		SampleEntity expected = new SampleEntity("12.0", 3, 3, LocalDate.parse("2020-01-01"), false,
+				LocalDateTime.parse("2020-01-01T00:00"));
+		assertEquals(expected, model.getData().get(2));
 	}
 
 	@Test

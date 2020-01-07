@@ -10,7 +10,7 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
- * {@code XlsxTableReader} class provides data read from Excel 2007 file.
+ * {@code XlsxTableReader} class provides data read feature from Excel 2007 file.
  *
  * @author Denis Murashev
  *

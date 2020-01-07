@@ -2,6 +2,7 @@ package com.github.jxen.tables.test;
 
 import com.github.jxen.tables.annotations.ColumnIndex;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -25,6 +26,12 @@ public class SampleEntity {
 	@ColumnIndex(index = 4, name = "date", defaultValue = "2020-01-01")
 	private LocalDate date;
 
+	@ColumnIndex(index = 5, name = "flag", defaultValue = "false")
+	private boolean flag;
+
+	@ColumnIndex(index = 7, name = "dateTime", defaultValue = "2020-01-01T00:00:00")
+	private LocalDateTime dateTime;
+
 	/**
 	 * Default constructor.
 	 */
@@ -32,16 +39,20 @@ public class SampleEntity {
 	}
 
 	/**
-	 * @param text   text
-	 * @param number number
-	 * @param value  value
-	 * @param date   date
+	 * @param text     text
+	 * @param number   number
+	 * @param value    value
+	 * @param date     date
+	 * @param flag     flag
+	 * @param dateTime date time
 	 */
-	public SampleEntity(String text, int number, double value, LocalDate date) {
+	public SampleEntity(String text, int number, double value, LocalDate date, boolean flag, LocalDateTime dateTime) {
 		this.text = text;
 		this.number = number;
 		this.value = value;
 		this.date = date;
+		this.flag = flag;
+		this.dateTime = dateTime;
 	}
 
 	/**
@@ -100,6 +111,34 @@ public class SampleEntity {
 		this.date = date;
 	}
 
+	/**
+	 * @return the flag
+	 */
+	public boolean isFlag() {
+		return flag;
+	}
+
+	/**
+	 * @param flag the flag to set
+	 */
+	public void setFlag(boolean flag) {
+		this.flag = flag;
+	}
+
+	/**
+	 * @return the dateTime
+	 */
+	public LocalDateTime getDateTime() {
+		return dateTime;
+	}
+
+	/**
+	 * @param dateTime the dateTime to set
+	 */
+	public void setDateTime(LocalDateTime dateTime) {
+		this.dateTime = dateTime;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) {
@@ -114,12 +153,14 @@ public class SampleEntity {
 		SampleEntity entity = (SampleEntity) o;
 		return number == entity.number
 				&& Double.compare(entity.value, value) == 0
+				&& flag == entity.flag
 				&& Objects.equals(text, entity.text)
-				&& Objects.equals(date, entity.date);
+				&& Objects.equals(date, entity.date)
+				&& Objects.equals(dateTime, entity.dateTime);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(text, number, value, date);
+		return Objects.hash(text, number, value, date, flag, dateTime);
 	}
 }

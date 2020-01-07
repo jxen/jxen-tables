@@ -9,6 +9,7 @@ import com.github.jxen.tables.xml.XmlMapping;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
@@ -17,13 +18,15 @@ class AbstractTableReaderTest {
 	@Test
 	void testReadCase1() {
 		String[][] data = {
-				{"A", "1", "1.0", "", "2020-01-01"},
-				{"B", "2", "2.0", "", "2020-01-02"},
-				{"C", "3", "3.0", "", "2020-01-03"},
+				{"A", "1", "1.0", "", "2020-01-01", "true", "", "2020-01-01T10:15:30"},
+				{"B", "2", "2.0", "", "2020-01-02", "false", "", "2020-01-01T10:15:30"},
+				{"C", "3", "3.0", "", "2020-01-03", "true", "", "2020-01-01T10:15:30"},
 		};
 		TableConfig<SampleEntity, SampleEntity> config = new TableConfig<>(Mapping.fromClass(SampleEntity.class));
 		TableModel<SampleEntity, SampleEntity> model = new AbstractTableReaderImpl(data).read(config, null);
-		assertEquals(new SampleEntity("C", 3, 3.0, LocalDate.parse("2020-01-03")), model.getData().get(2));
+		SampleEntity expected = new SampleEntity("C", 3, 3.0, LocalDate.parse("2020-01-03"), true,
+				LocalDateTime.parse("2020-01-01T10:15:30"));
+		assertEquals(expected, model.getData().get(2));
 	}
 
 	@Test
@@ -34,29 +37,37 @@ class AbstractTableReaderTest {
 				{"value", "11.0"},
 				{"", ""},
 				{"date", "2020-02-02"},
+				{"flag", "true"},
+				{"", ""},
+				{"dateTime", "2020-02-02T10:15:30"},
 				{},
-				{"A", "1", "1.0", "", "2020-01-01"},
-				{"B", "2", "2.0", "", "2020-01-02"},
-				{"C", "3", "3.0", "", "2020-01-03"},
+				{"A", "1", "1.0", "", "2020-01-01", "true", "", "2020-01-01T10:15:30"},
+				{"B", "2", "2.0", "", "2020-01-02", "false", "", "2020-01-01T10:15:30"},
+				{"C", "3", "3.0", "", "2020-01-03", "true", "", "2020-01-01T10:15:30"},
 		};
 		Mapping<SampleEntity> mapping = XmlMapping
 				.fromXml(AbstractTableReaderTest.class.getResourceAsStream("/SampleEntity.map.xml"));
 		Mapping<SampleEntity> headerMapping = Mapping.fromClass(SampleEntity.class);
 		TableConfig<SampleEntity, SampleEntity> config = new TableConfig<>(mapping, headerMapping);
 		TableModel<SampleEntity, SampleEntity> model = new AbstractTableReaderImpl(data).read(config, null);
-		assertEquals(new SampleEntity("Aa", 10, 11.0, LocalDate.parse("2020-02-02")), model.getHeader());
-		assertEquals(new SampleEntity("C", 3, 3.0, LocalDate.parse("2020-01-03")), model.getData().get(2));
+		SampleEntity expected = new SampleEntity("Aa", 10, 11.0, LocalDate.parse("2020-02-02"), true,
+				LocalDateTime.parse("2020-02-02T10:15:30"));
+		assertEquals(expected, model.getHeader());
+		expected = new SampleEntity("C", 3, 3.0, LocalDate.parse("2020-01-03"), false, null);
+		assertEquals(expected, model.getData().get(2));
 	}
 
 	@Test
 	void testReadCase3() {
 		String[][] data = {
-				{"A", "1", "1.0", "", "2020-01-01"},
-				{"B", "2", "2.0", "", "2020-01-02"},
-				{"C", "3", "3.0", "", "2020-01-03"},
+				{"A", "1", "1.0", "", "2020-01-01", "true", "", "2020-01-01T10:15:30"},
+				{"B", "2", "2.0", "", "2020-01-02", "false", "", "2020-01-01T10:15:30"},
+				{"C", "3", "3.0", "", "2020-01-03", "true", "", "2020-01-01T10:15:30"},
 		};
 		List<SampleEntity> list = new AbstractTableReaderImpl(data).read(Mapping.fromClass(SampleEntity.class), null);
-		assertEquals(new SampleEntity("C", 3, 3.0, LocalDate.parse("2020-01-03")), list.get(2));
+		SampleEntity expected = new SampleEntity("C", 3, 3.0, LocalDate.parse("2020-01-03"), true,
+				LocalDateTime.parse("2020-01-01T10:15:30"));
+		assertEquals(expected, list.get(2));
 	}
 
 	@Test
