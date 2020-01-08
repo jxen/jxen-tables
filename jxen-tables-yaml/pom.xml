@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.github.jxen.sdk</groupId>
 		<artifactId>jxen-tables</artifactId>
-		<version>0.1-SNAPSHOT</version>
+		<version>0.1</version>
 	</parent>
 	<artifactId>jxen-tables-yaml</artifactId>
 	<name>Electronic Tables YAML Support</name>

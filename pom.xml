@@ -8,7 +8,7 @@
 		<version>2-SNAPSHOT</version>
 	</parent>
 	<artifactId>jxen-tables</artifactId>
-	<version>0.1-SNAPSHOT</version>
+	<version>0.1</version>
 	<packaging>pom</packaging>
 	<name>Electronic Tables Support</name>
 	<description>Electronic Tables Support</description>
